@@ -1,0 +1,71 @@
+.option {
+  width: 60%;
+  margin: 100px auto;
+}
+.option h3 {
+  background-color: #eee;
+  line-height: 50px;
+  border-bottom: 3px solid #aaa;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+.option .des {
+  margin: 20px;
+}
+.option .config-area {
+  background-color: #eee;
+  padding: 10px 20px;
+}
+.option .left, .option .right {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 50px;
+}
+.option .savebtn {
+  margin-left: 50px;
+}
+.option .blocklabel {
+  display: block;
+  line-height: 30px;
+}
+.option .switch-conf {
+  margin-bottom: 10px;
+}
+
+.popup {
+  margin: 0;
+  padding: 10px;
+  background: #F0F0F0;
+}
+.popup .urlinput {
+  width: 100px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+.popup .urlinput:focus {
+  outline: none;
+}
+.popup .btnarea {
+  text-align: center;
+}
+.popup .generbtn {
+  display: inline-block;
+  padding: 5px 0;
+  width: 100%;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  background-color: #4DA4AB;
+  transition: all 0.3s ease;
+}
+.popup .generbtn:hover {
+  background-color: #489096;
+}
+.popup .generbtn:focus {
+  outline: none;
+}
+.popup .qrarea {
+  width: 100px;
+  height: 100px;
+}

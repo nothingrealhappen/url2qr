@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>URL2QR Configuration</title>
+  <link rel="stylesheet" href="dist/style.css">
+</head>
+<body class="option">
+  <h3>Setting Your Repeat Rule . </h3>
+  <div class="des">eg: <em>http://localhost/xxx.html</em> will overwrite to <em>http://192.168.1.1/xxx.html</em></div>
+  <div class="config-area">
+    <div class="switch-conf">
+      <label>
+        <input type="radio" name="matchswitch" value="1"> Turn ON
+      </label>
+      <label>
+        <input type="radio" name="matchswitch" value="0" checked> Turn OFF
+      </label>
+    </div>
+    <div class="left">
+      <label class="blocklabel" for="match">Match:</label>
+      <textarea name="match" id="match" cols="30" rows="10">localhost
+0.0.0.0
+127.0.0.1
+</textarea>
+    </div>
+    <div class="right">
+      <label class="blocklabel" for="replace">To:</label>
+      <input type="text" id="replace" value="192.168.1.1">
+      <button class="savebtn" id="save">Save</button>
+    </div>
+  </div>
+  <script src="dist/main.min.js"></script>
+</body>
+</html>

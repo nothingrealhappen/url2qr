@@ -1,0 +1,13 @@
+{
+  "name": "URL2QR",
+  "version": "1.0.0",
+  "description": "Generate QR code from now URL 。",
+  "author": "GeekPark",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
