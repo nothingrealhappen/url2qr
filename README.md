@@ -11,16 +11,6 @@
 
 ##2.自己改造
 
-把所有文件`clone`下来，然后根据你自己的需要改造，打包的时候注意新建一个文件夹，只打包这几个文件就可以了
+把所有文件`clone`下来，然后根据你的想法改造。改造完毕后运行`grunt deploy`将插件所需要的文件打包到`url2qr`文件夹，然后再到`Chrome`里选择这个子文件夹进行打包。
 
-```
-必要的文件列表：
-dist/
-icon.png
-manifest.json
-options.html
-popup.html
-
-```
-
-祝你好运！Good Luck ！
+Good Luck ！

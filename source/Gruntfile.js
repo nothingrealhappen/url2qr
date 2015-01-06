@@ -38,12 +38,12 @@ module.exports = function(grunt) {
         tasks:['concat', 'uglify']
       }
     },
-    clean: ["URL2QR/", "URL2QR.crx", "*.pem"],
+    clean: ["../url2ql/", "../url2ql.crx", "../*.pem"],
     copy: {
       deploy: {
         files: [
           // includes files within path
-          {expand: true, src: ['dist/**', 'icon.png', 'manifest.json', '*.html'], dest: 'URL2QR/'}
+          {expand: true, src: ['dist/**', 'icon.png', 'manifest.json', '*.html'], dest: '../url2qr/'}
         ],
       },
     },
