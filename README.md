@@ -7,7 +7,7 @@
 
 ##1.使用方法
 
-如果你是`Chrome`，按住`Ctrl`[点击这里](chrome://extensions/)到达插件配置页面，然后把下载好的`url2qr.crx`拖进去点击确定即可
+如果你是`Chrome`，进入`chrome://extensions/`地址到达插件配置页面，然后把下载好的`url2qr.crx`拖进去点击确定即可
 
 ##2.自己改造
 
