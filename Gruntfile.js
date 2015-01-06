@@ -37,12 +37,24 @@ module.exports = function(grunt) {
         files: 'src/js/*.js',
         tasks:['concat', 'uglify']
       }
-    }
+    },
+    clean: ["URL2QR/", "URL2QR.crx", "*.pem"],
+    copy: {
+      deploy: {
+        files: [
+          // includes files within path
+          {expand: true, src: ['dist/**', 'icon.png', 'manifest.json', '*.html'], dest: 'URL2QR/'}
+        ],
+      },
+    },
   });
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('default', ['sass', 'concat', 'uglify', 'watch']);
+  grunt.registerTask('deploy', ['clean', 'copy:deploy']);
 };
