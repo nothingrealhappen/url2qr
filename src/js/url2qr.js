@@ -26,11 +26,12 @@ window.onload = function() {
       chrome.tabs.getSelected(null, function(tab) {
         generURL = tab.url;
 
-        if(Object.getOwnPropertyNames(result).length !== 0 && result.switch) {
+        if(Object.getOwnPropertyNames(result).length !== 0 && result.switch == '1') {
           // tab.url filter
           for (var i = 0; i < result.match.length; i++) {
             generURL = generURL.replace(result.match[i], result.replace);
           };
+          console.log(result.switch);
         }
         var qrcode = new QRCode(showarea, {
             text: "http://liyaodong.sinaapp.com",
