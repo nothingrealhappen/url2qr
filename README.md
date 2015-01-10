@@ -14,3 +14,5 @@
 把所有文件`clone`下来，然后根据你的想法改造。改造完毕后运行`grunt deploy`将插件所需要的文件打包到`url2qr`文件夹，然后再到`Chrome`里选择这个子文件夹进行打包。
 
 Good Luck ！
+
+注：这个想法是和[Neyo](https://github.com/niandalu)一块想到的，于是我做了Chrome插件版，他做了屌炸天的[Alfred版本](https://github.com/Niandalu/alfred-convert-url-to-qrcode)可以自动检测局域网IP，有需要的亲可以戳过去。
