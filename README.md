@@ -16,3 +16,6 @@
 Good Luck ！
 
 注：这个想法是和[Neyo](https://github.com/niandalu)一块想到的，于是我做了Chrome插件版，他做了屌炸天的[Alfred版本](https://github.com/Niandalu/alfred-convert-url-to-qrcode)可以自动检测局域网IP，有需要的亲可以戳过去。
+
+##版本更新
+v1.1 增加本地局域网IP检测，参考[webrtc-ips](https://github.com/diafygi/webrtc-ips)
