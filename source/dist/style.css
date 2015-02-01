@@ -31,6 +31,11 @@
 .option .switch-conf {
   margin-bottom: 10px;
 }
+.option .autorealtip {
+  color: #888;
+  font-style: italic;
+  padding-left: 3px;
+}
 
 .popup {
   margin: 0;

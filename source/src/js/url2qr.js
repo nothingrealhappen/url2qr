@@ -123,6 +123,23 @@ window.onload = function() {
     chrome.storage.local.get(['switch', 'match', 'replace'], function(result) {
       if(Object.getOwnPropertyNames(result).length !== 0) {
         updateView (result);
+      } else {
+        // if doesn't have user data , then auto padding with
+        fillRealIP('replace', 'input');
+      }
+
+    });
+  }
+
+  function fillRealIP (domid, type) {
+    window.getIPs(function(ip) {
+      if (ip.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/)) {
+        // if true , this is a local ip
+        if(type == 'input') {
+          document.getElementById(domid).value = ip;
+        } else {
+          document.getElementById(domid).innerHTML = ip;
+        }
       }
     });
   }
@@ -154,6 +171,8 @@ window.onload = function() {
       matchDom.innerHTML = matchStr;
     } // if setting end
   }
+
+
 
 
 };
