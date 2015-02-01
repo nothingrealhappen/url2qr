@@ -37,8 +37,13 @@ module.exports = function(grunt) {
         files: 'src/js/*.js',
         tasks:['concat', 'uglify']
       }
+    } ,
+    clean: {
+      options: {
+        force: true
+      },
+      files: ["../url2qr", "../url2qr.crx", "../url2qr.zip", "../url2qr.crx"]
     },
-    clean: ["../url2ql/", "../url2ql.crx", "../*.pem"],
     copy: {
       deploy: {
         files: [
@@ -56,5 +61,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('default', ['sass', 'concat', 'uglify', 'watch']);
-  grunt.registerTask('deploy', ['clean', 'copy:deploy']);
+  grunt.registerTask('deploy', ['clean', "copy"]);
 };
