@@ -19,3 +19,5 @@ Good Luck ！
 
 ##版本更新
 v1.1 增加本地局域网IP检测，参考[webrtc-ips](https://github.com/diafygi/webrtc-ips)
+
+v1.2 增加选项，可自定义始终检测局域网IP替换，即使更换网络也能做到自适应地址。

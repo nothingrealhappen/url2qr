@@ -1,6 +1,5 @@
 window.onload = function() {
-
-  if (document.body.classList.contains('option')) {
+ if (document.body.classList.contains('option')) {
     // option js
 
     // read setting and display
@@ -17,7 +16,7 @@ window.onload = function() {
   if (document.body.classList.contains('popup')) {
 
     // read data from storage
-    chrome.storage.local.get(['switch', 'match', 'replace'], function(result) {
+    chrome.storage.local.get(['switch', 'match', 'replace', 'autoip'], function(result) {
       var showarea = document.getElementById('qrarea'),
             status = document.getElementById('status'),
             generURL;
@@ -28,24 +27,46 @@ window.onload = function() {
 
         if(Object.getOwnPropertyNames(result).length !== 0 && result.switch == '1') {
           // tab.url filter
-          for (var i = 0; i < result.match.length; i++) {
-            generURL = generURL.replace(result.match[i], result.replace);
-          };
-          console.log(result.switch);
+          if(result.autoip == '1') {
+            // auto replace by auto ip
+            window.getIPs(function(ip) {
+              if (ip.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/)) {
+                for (var i = 0; i < result.match.length; i++) {
+                  generURL = generURL.replace(result.match[i], ip);
+                };
+              }
+              generQR(generURL);
+            });
+          } else {
+            // else replace by user input rule
+            for (var i = 0; i < result.match.length; i++) {
+              generURL = generURL.replace(result.match[i], result.replace);
+            };
+            generQR(generURL);
+          }
+
+        } else {
+          // else just gener qr
+          generQR(generURL);
         }
-        var qrcode = new QRCode(showarea, {
-            text: "http://liyaodong.sinaapp.com",
-            width: 100,
-            height: 100,
-            colorDark : "#000000",
-            colorLight : "#ffffff",
-            correctLevel : QRCode.CorrectLevel.H
-        });
-        qrcode.makeCode(generURL);
 
-        status.innerHTML = '';
+        function generQR (generURL) {
+          var qrcode = new QRCode(showarea, {
+              text: "http://liyaodong.sinaapp.com",
+              width: 100,
+              height: 100,
+              colorDark : "#000000",
+              colorLight : "#ffffff",
+              correctLevel : QRCode.CorrectLevel.H
+          });
 
-        document.getElementById('nowurl').value = generURL;
+          qrcode.makeCode(generURL);
+
+          status.innerHTML = '';
+
+          document.getElementById('nowurl').value = generURL;
+        }
+
       });
 
     });
@@ -88,28 +109,35 @@ window.onload = function() {
     var matchInput = document.getElementsByName('matchswitch'),
         matchRuleText = document.getElementById('match').value.trim(),
         matchReplace = document.getElementById('replace').value,
+        autoipInput = document.getElementsByName('autoip'),
+        autoip = 1,
         matchSwitch = 1,
         matchRule,
         setting;
 
-    for (var i = 0; i < matchInput.length; i++) {
-      if(matchInput[i].checked) {
-        matchSwitch = matchInput[i].value;
-      }
-    };
-
 
     matchRule = matchRuleText.split( "\n" );
+    matchSwitch = getCheckedInput(matchInput);
+    autoip = getCheckedInput(autoipInput);
 
 
     setting = {
       'switch': matchSwitch,
       'match': matchRule,
-      'replace': matchReplace
+      'replace': matchReplace,
+      'autoip': autoip
     }
 
     chrome.storage.local.set(setting, saveDone);
 
+  }
+
+  function getCheckedInput (inputs) {
+    for (var i = 0; i < inputs.length; i++) {
+      if(inputs[i].checked) {
+        return inputs[i].value;
+      }
+    };
   }
 
   function saveDone () {
@@ -120,7 +148,7 @@ window.onload = function() {
 
   function updateSettingView () {
     // update switdch
-    chrome.storage.local.get(['switch', 'match', 'replace'], function(result) {
+    chrome.storage.local.get(['switch', 'match', 'replace', 'autoip'], function(result) {
       if(Object.getOwnPropertyNames(result).length !== 0) {
         updateView (result);
       } else {
@@ -147,13 +175,22 @@ window.onload = function() {
   function updateView (setting) {
     if(setting) {
       // if has setting then update setting view.
-      var matchSwitch = document.getElementsByName('matchswitch');
+      var matchSwitch = document.getElementsByName('matchswitch'),
+          autoipInput = document.getElementsByName('autoip');
 
       for (var i = 0; i < matchSwitch.length; i++) {
         if(matchSwitch[i].value == setting.switch) {
           matchSwitch[i].setAttribute('checked', 'checket');
         } else {
           matchSwitch[i].removeAttribute('checked');
+        }
+      };
+
+      for (var i = 0; i < autoipInput.length; i++) {
+        if(autoipInput[i].value == setting.autoip) {
+          autoipInput[i].setAttribute('checked', 'checket');
+        } else {
+          autoipInput[i].removeAttribute('checked');
         }
       };
 

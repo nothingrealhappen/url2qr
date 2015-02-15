@@ -22,15 +22,24 @@
       <textarea name="match" id="match" cols="30" rows="10">localhost
 0.0.0.0
 127.0.0.1
+lh
 </textarea>
     </div>
     <div class="right">
       <label class="blocklabel" for="replace">To:</label>
-      <input type="text" id="replace" value="192.168.1.1">
-      <button class="savebtn" id="save">Save</button>
-      <div class="autorealtip">
-        It's your local ip ?
+      <label class="item">
+        <input type="radio" name="autoip" id="autoswitch" checked value="1">
+        Auto detect local IP
+      </label>
+      <div class="customstring" class="item">
+        <label>
+          <input type="radio" name="autoip" id="autoswitch" value="0">
+          Custom replace string
+        </label>
+        <br>
+        <input type="text" id="replace" value="192.168.1.1" class="secondinput">
       </div>
+      <button class="savebtn" id="save">Save</button>
     </div>
   </div>
   <script src="dist/main.min.js"></script>

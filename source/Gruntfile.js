@@ -12,22 +12,21 @@ module.exports = function(grunt) {
         }
       }
     },
-    concat: {
+
+    uglify: {
       options: {
-        separator: ';'
+        // sourceMap: 'main.min.map'
       },
       dist: {
-        src: ['src/js/*.js'],
-        dest: '/tmp/main.js'
-      }
-    },
-    uglify:{
-      dist: {
         files: {
-          'dist/main.min.js': '/tmp/main.js'
+          'dist/main.min.js':
+            [
+              'src/js/*.js'
+            ]
         }
       }
     },
+
     watch:{
       sass:{
         files: 'src/css/*.scss',
@@ -35,7 +34,7 @@ module.exports = function(grunt) {
       },
       js:{
         files: 'src/js/*.js',
-        tasks:['concat', 'uglify']
+        tasks:['uglify']
       }
     } ,
     clean: {
@@ -56,10 +55,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('default', ['sass', 'concat', 'uglify', 'watch']);
+  grunt.registerTask('default', ['sass', 'uglify', 'watch']);
   grunt.registerTask('deploy', ['clean', "copy"]);
 };

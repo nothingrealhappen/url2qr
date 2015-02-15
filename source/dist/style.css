@@ -22,7 +22,7 @@
   margin-right: 50px;
 }
 .option .savebtn {
-  margin-left: 50px;
+  margin-top: 10px;
 }
 .option .blocklabel {
   display: block;
@@ -35,6 +35,14 @@
   color: #888;
   font-style: italic;
   padding-left: 3px;
+}
+.option .item {
+  margin-bottom: 3px;
+  display: block;
+}
+.option .secondinput {
+  margin-left: 20px;
+  margin-top: 5px;
 }
 
 .popup {
