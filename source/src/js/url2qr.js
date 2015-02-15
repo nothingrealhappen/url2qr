@@ -34,10 +34,10 @@ window.onload = function() {
                 for (var i = 0; i < result.match.length; i++) {
                   generURL = generURL.replace(result.match[i], ip);
                 };
+                generQR(generURL);
               }
-              generQR(generURL);
             });
-          } else {
+          } else if (result.autoip == '0') {
             // else replace by user input rule
             for (var i = 0; i < result.match.length; i++) {
               generURL = generURL.replace(result.match[i], result.replace);
@@ -47,7 +47,7 @@ window.onload = function() {
 
         } else {
           // else just gener qr
-          generQR(generURL);
+          // generQR(generURL);
         }
 
         function generQR (generURL) {
