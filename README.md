@@ -21,3 +21,5 @@ Good Luck ！
 v1.1 增加本地局域网IP检测，参考[webrtc-ips](https://github.com/diafygi/webrtc-ips)
 
 v1.2 增加选项，可自定义始终检测局域网IP替换，即使更换网络也能做到自适应地址。
+
+v1.3 剔除10段IP局域网自动检测，很多VPN都是这个IP端会导致检测到两个局域网地址并生成两张二维码。

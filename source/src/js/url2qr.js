@@ -30,7 +30,7 @@ window.onload = function() {
           if(result.autoip == '1') {
             // auto replace by auto ip
             window.getIPs(function(ip) {
-              if (ip.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/)) {
+              if (ip.match(/^(192\.168\.|169\.254\.|172\.(1[6-9]|2\d|3[01]))/)) {
                 for (var i = 0; i < result.match.length; i++) {
                   generURL = generURL.replace(result.match[i], ip);
                 };
