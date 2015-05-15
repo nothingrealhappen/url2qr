@@ -7,8 +7,7 @@
 
 ##1.使用方法
 
-如果你是`Chrome`，进入`chrome://extensions/`地址到达插件配置页面，然后把下载好的`url2qr.crx`拖进去点击确定即可
-
+[进入Chrome App Store安装最新版](https://chrome.google.com/webstore/detail/pmlpmeejppihnemepiadkmnghmbclhpg)
 ##2.自己改造
 
 把所有文件`clone`下来，然后根据你的想法改造。改造完毕后运行`grunt deploy`将插件所需要的文件打包到`url2qr`文件夹，然后再到`Chrome`里选择这个子文件夹进行打包。
@@ -23,3 +22,5 @@ v1.1 增加本地局域网IP检测，参考[webrtc-ips](https://github.com/diafy
 v1.2 增加选项，可自定义始终检测局域网IP替换，即使更换网络也能做到自适应地址。
 
 v1.3 剔除10段IP局域网自动检测，很多VPN都是这个IP端会导致检测到两个局域网地址并生成两张二维码。
+
+v1.4 重新添加10段IP局域网检测（校园网分配IP就是10段），但不会出现多次产生二维码的问题。同时将插件上线至Chrome Store
