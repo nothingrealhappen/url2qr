@@ -50,4 +50,41 @@ window.getIPs = function (callback){
     pc.setLocalDescription(result, function(){}, function(){});
 
   }, function(){});
-}
+};
+
+window.getLocalIP = function (callback) {
+  var localIPReg = /^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/;
+
+  var localIPlist = [];
+
+  var ipRank = [192,10,172,254];
+
+  window.getIPs(function(ip) {
+    localIPlist.push({
+      ip: ip,
+      group: ip.split('.')[0]
+    });
+  });
+
+  // wait 50ms for all ip has got
+  setTimeout(function () {
+    // all lcoal ip should display , and then get the real local ip
+    localIPlist.sort(function (a, b) {
+      var rankA = ipRank.indexOf(Number(a.group));
+      var rankB = ipRank.indexOf(Number(b.group));
+
+      if(rankA === -1) {
+        return true;
+      }
+
+      if(rankB === -1 ||  rankB > rankA) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+    callback(localIPlist[0]['ip']);
+  }, 50);
+
+};

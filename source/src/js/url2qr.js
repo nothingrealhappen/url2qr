@@ -1,5 +1,6 @@
 window.onload = function() {
- if (document.body.classList.contains('option')) {
+
+  if (document.body.classList.contains('option')) {
     // option js
 
     // read setting and display
@@ -17,6 +18,20 @@ window.onload = function() {
 
     // read data from storage
     chrome.storage.local.get(['switch', 'match', 'replace', 'autoip'], function(result) {
+      // if no config set default config
+      if(JSON.stringify(result) === '{}') {
+        window.getLocalIP(function (ip) {
+          chrome.storage.local.set({
+            autoip: '1',
+            match: ['localhost', '0.0.0.0', '127.0.0.1', 'lh'],
+            replace: ip,
+            switch: '1'
+          }, function (result) {
+            document.location.reload(true);
+          });
+        });
+      }
+
       var showarea = document.getElementById('qrarea'),
             status = document.getElementById('status'),
             generURL;
@@ -29,22 +44,16 @@ window.onload = function() {
           // tab.url filter
           if(result.autoip == '1') {
             // auto replace by auto ip
-            var lock = 0;
-            function lockOn (){
-              lock = 1;
-            }
+            window.getLocalIP(function (ip) {
+              var generIP = ip;
 
-            window.getIPs(function(ip) {
-              // if (ip.match(/^(192\.168\.|169\.254\.|172\.(1[6-9]|2\d|3[01]))/)) {
-              if(lock) return;
-              if (ip.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/)) {
-                for (var i = 0; i < result.match.length; i++) {
-                  generURL = generURL.replace(result.match[i], ip);
-                };
-                generQR(generURL);
-                lockOn();
-              }
+              result.match.forEach(function (item) {
+                generURL = generURL.replace(item, ip);
+              });
+
+              generQR(generURL);
             });
+
           } else if (result.autoip == '0') {
             // else replace by user input rule
             for (var i = 0; i < result.match.length; i++) {
@@ -54,13 +63,13 @@ window.onload = function() {
           }
 
         } else {
-          // else just gener qr
-          // generQR(generURL);
+          // if switch if off , just gener qr code
+          generQR(generURL);
         }
 
         function generQR (generURL) {
           var qrcode = new QRCode(showarea, {
-              text: "http://liyaodong.sinaapp.com",
+              text: "http://liyaodong.com",
               width: 100,
               height: 100,
               colorDark : "#000000",
@@ -168,14 +177,11 @@ window.onload = function() {
   }
 
   function fillRealIP (domid, type) {
-    window.getIPs(function(ip) {
-      if (ip.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/)) {
-        // if true , this is a local ip
-        if(type == 'input') {
-          document.getElementById(domid).value = ip;
-        } else {
-          document.getElementById(domid).innerHTML = ip;
-        }
+    window.getLocalIP(function (ip) {
+      if(type == 'input') {
+        document.getElementById(domid).value = ip;
+      } else {
+        document.getElementById(domid).innerHTML = ip;
       }
     });
   }
@@ -216,8 +222,5 @@ window.onload = function() {
       matchDom.innerHTML = matchStr;
     } // if setting end
   }
-
-
-
 
 };

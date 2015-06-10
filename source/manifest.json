@@ -1,11 +1,11 @@
 {
-	"name": "URL2QR",
-	"version": "1.4",
-	"manifest_version": 2,
-	"description": "将当前URL的地址转成二维码",
+  "name": "URL2QR",
+  "version": "2.0",
+  "manifest_version": 2,
+  "description": "将当前URL的地址转成二维码",
   "author": "Vanilla",
   "homepage_url": "https://chrome.google.com/webstore/detail/url2qr/pmlpmeejppihnemepiadkmnghmbclhpg",
-	"icons": {
+  "icons": {
     "16": "icon.png",
     "48": "icon.png",
     "128": "icon.png"
