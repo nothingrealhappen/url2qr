@@ -84,7 +84,11 @@ window.getLocalIP = function (callback) {
       }
     });
 
-    callback(localIPlist[0]['ip']);
+    if (localIPlist.length) {
+      callback(localIPlist[0]['ip']);
+    } else {
+      callback('0.0.0.0');
+    }
   }, 50);
 
 };

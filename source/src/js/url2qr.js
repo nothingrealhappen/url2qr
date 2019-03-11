@@ -22,7 +22,7 @@ window.onload = function() {
       if(JSON.stringify(result) === '{}') {
         window.getLocalIP(function (ip) {
           chrome.storage.local.set({
-            autoip: '1',
+            autoip: '0',
             match: ['localhost', '0.0.0.0', '127.0.0.1', 'lh'],
             replace: ip,
             switch: '1'
